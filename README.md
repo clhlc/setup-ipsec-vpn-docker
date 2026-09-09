@@ -37,3 +37,14 @@ docker compose up -d --build
 
 ## 3. 其他说明
 * 用户按照格式写入 config/users.conf
+* ECC-256证书支持MacOS/Windows 11/Strongswan APP
+* RSA 2048证书全平台支持
+
+## 4. 证书类型与操作系统兼容性表
+
+|  | macOS 26 | iOS 26 | Windows 11| 安卓 (Android 16) |
+| :--- | :---: | :---: | :---: | :---: |
+| **Let's Encrypt RSA 2048** | &#10004; | &#10004; | &#10008; | &#10008; |
+| **Let's Encrypt ECC 256** (ECDSA P-256) | &#10004; | &#10008; | &#10008; | &#10008; |
+| **ZeroSSL RSA 2048** | &#10004; | &#10004; | &#10004; | &#10004; |
+| **ZeroSSL ECC 256** (ECDSA P-256) | &#10004; | &#10008; | &#10004; | &#10008; |
