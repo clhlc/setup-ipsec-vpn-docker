@@ -17,21 +17,25 @@
 
 ```bash
 # 1. 强制申请 RSA 2048 证书 (替换为你的域名)
+export domain=vpn.yourdomain.com
+
 cd setup-ipsec-vpn-docker
 
 # standalone
-acme.sh --issue -d vpn.yourdomain.com --standalone --keylength 2048 --server zerossl
+acme.sh --issue -d $domain --standalone --keylength 2048 --server zerossl
 
 # 或者使用dns方式
-acme.sh --issue -d vpn.yourdomain.com --dns dns_cf --keylength 2048 --server zerossl
+acme.sh --issue -d $domain --dns dns_cf --keylength 2048 --server zerossl
 
 # 2. 安装证书到 StrongSwan 目录
-acme.sh --install-cert -d vpn.yourdomain.com --key-file ./certs/server-key.pem --cert-file ./certs/server-cert.pem --ca-file ./certs/ca.pem
+acme.sh --install-cert -d $domain --key-file ./certs/server-key.pem --cert-file ./certs/server-cert.pem --ca-file ./certs/ca.pem
 ```
 
 ## 2. 部署服务
 
 ```bash
+sed -i "s/vpnyourdomaincom/${domain}/g" config/swanctl.conf
+
 docker compose up -d --build
 ```
 
